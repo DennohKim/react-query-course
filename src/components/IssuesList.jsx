@@ -3,7 +3,7 @@ import { useQuery } from "react-query";
 import { IssueItem } from "./IssueItem";
 
 export default function IssuesList() {
-  const { data, isLoading, isErrors, error } = useQuery(["issues"], () =>
+  const { data, isLoading, isError, error } = useQuery(["issues"], () =>
     fetch("api/issues").then((res) => res.json())
   );
 
