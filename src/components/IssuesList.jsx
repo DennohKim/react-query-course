@@ -2,16 +2,17 @@ import { Link } from "react-router-dom";
 import { useQuery } from "react-query";
 import { IssueItem } from "./IssueItem";
 
-export default function IssuesList({labels}) {
-  const { data, isLoading, isError, error } = useQuery(["issues", {labels}], () =>
+export default function IssuesList({labels, status}) {
+  const { data, isLoading, isError, error } = useQuery(["issues", {labels, status}], () =>
     {
+      const statusString = status ? `&status=${status}` : ""
       const labelsString = labels.map((label) => `labels[]=${label}`).join("&")
-      return fetch(`api/issues?${labelsString}`).then((res) => res.json())}
+      return fetch(`api/issues?${labelsString}${statusString}`).then((res) => res.json())}
   );
 
   return (
     <div>
-      <h1>Issues List</h1>
+      <h3>Issues List</h3>
       {isLoading ? (
         <p>Loading...</p>
       ) : (
