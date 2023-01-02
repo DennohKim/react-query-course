@@ -1,6 +1,6 @@
 import { useQuery } from "react-query";
 
-
+//fetch list of users
 export function useUserData(userId){
     const usersData = useQuery(
         ["users", userId],
