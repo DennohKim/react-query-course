@@ -7,6 +7,9 @@ export function useUserData(userId){
         async ()=> {
             const res = await fetch(`api/users/${userId}`)
             return await res.json()
+        },
+        {
+            staleTime: 1000 * 60 * 5
         }
     )
 
